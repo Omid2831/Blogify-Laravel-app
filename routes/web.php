@@ -12,8 +12,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/About', [AboutController::class, 'index'])->name('about');
 
 // Contact page 
-Route::get('/contact', function(){
-    return "<h2 class='text-center'>You ate a lot   </h2>";
+Route::get('/contact', function () {
+    return "<h2 class='text-center'>You ate a lot</h2>";
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
