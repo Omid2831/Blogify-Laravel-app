@@ -8,7 +8,7 @@ interface pageNameProp {
 
 const Home: React.FC<pageNameProp> = ({ pageName }) => {
     return (
-        <div className='bg-amber-700 min-h-screen'>
+        <div className='bg-red-400 min-h-screen'>
             <NavBar />
             <div className='flex items-center justify-center min-h-[calc(100vh-80px)] px-4'>
                 <div className='bg-gray-800 border-4 border-black rounded-lg p-8 max-w-4xl w-full'>
