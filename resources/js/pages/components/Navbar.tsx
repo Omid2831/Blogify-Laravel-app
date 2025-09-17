@@ -10,7 +10,11 @@ const Navbar = () => {
 
         {/* Menu */}
         <ul className="flex space-x-6 text-white font-medium">
-          <li className="hover:text-sky-300 cursor-pointer transition">Home</li>
+          <li className="hover:text-sky-300 cursor-pointer transition">
+            <Link href={"/"}>
+              Home
+            </Link>
+          </li>
           <li className="hover:text-sky-300 cursor-pointer transition">
             <Link href="/About">
               About
