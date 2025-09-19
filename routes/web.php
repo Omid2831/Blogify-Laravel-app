@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Headers\AboutController;
 use App\Http\Controllers\Homepage\HomeController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +17,8 @@ Route::get('/contact', function () {
     return "<h2 class='text-center'>You ate a lot</h2>";
 });
 
+// page webpage
+Route::get('/page', [PageController::class, 'index']);
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
