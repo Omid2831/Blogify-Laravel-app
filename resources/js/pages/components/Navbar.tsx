@@ -16,6 +16,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="hover:text-sky-300 cursor-pointer transition">
+            <Link href={"/page"}
+              className="hover:text-sky-300 cursor-pointer transition">
+              Page
+            </Link>
+          </li>
+          <li className="hover:text-sky-300 cursor-pointer transition">
             <Link href="/About">
               About
             </Link>
