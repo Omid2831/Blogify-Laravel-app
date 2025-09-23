@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $meta['title'] ?? 'you got an error' }}</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1"></script>
-</head>
-
-<body>
-    <h2 class="bold text-center text-5xl mt-5">
-        {{ $meta['description'] ?? 'you have nothing fetched' }}
-    </h2>
-</body>
-
-</html>
+@section('content')
+    @if($messages && count($messages) > 0)
+        <ul class="mt-4">
+            @foreach($messages as $message)
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    @else
+        <h1 class="text-warning bg-danger text-center mt-4">
+            There is nothing on the backend at the moment
+        </h1>
+    @endif
+@endsection
