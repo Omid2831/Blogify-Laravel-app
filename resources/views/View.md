@@ -39,3 +39,39 @@ I learned how to **create reusable layouts and Blade templates** in Laravel.
    * How to structure **dynamic content** with reusable layouts for maintainable code.
    * Using conditional statements to handle missing or empty data.
 
+
+### Using Blade Components for Layout
+
+I learned how to **create reusable Blade components** in Laravel to make layouts cleaner and easier to maintain.
+
+1. **Header and Footer Components**
+
+   * Created `Header` and `Footer` components using:
+
+     ```bash
+     php artisan make:component Header
+     php artisan make:component Footer
+     ```
+   * Moved the header and footer HTML from the layout into these components.
+   * Example usage in a layout:
+
+     ```blade
+     <x-header />
+     <main>@yield('content')</main>
+     <x-footer />
+     ```
+
+2. **Benefits**
+
+   * **Reusability**: Can include the same header/footer in multiple layouts or pages.
+   * **Maintainability**: Update in one place, changes reflect everywhere.
+   * **Cleaner layouts**: Layout files now focus only on page structure and `@yield` content.
+
+3. **Key Learning**
+
+   * How to **modularize Blade templates**.
+   * How Laravel automatically makes component data and views easy to use.
+   * Understanding the **separation of concerns** in MVC more clearly.
+
+> **Note:**
+><br> All page-specific meta data is passed as a single array from the controller, making it easy to access `$meta` and `$messages` in any Blade template.
