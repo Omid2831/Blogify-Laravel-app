@@ -11,20 +11,15 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header -->
-    <header class="bg-gray-800 text-white p-4">
-        <h2 class="text-5xl font-bold text-center mt-5">
-            {{ $meta['description'] ?? 'No description available' }}
-        </h2>
-    </header>
+    <x-header />
+
     <!-- Page content -->
     <main class="p-6">
         @yield('content')
     </main>
 
     <!-- Footer -->
-    <footer class="absolute bottom-0 w-full bg-gray-800 text-white p-4 text-center">
-        &copy; {{ date('Y') }} My Laravel Site
-    </footer>
+    <x-footer />
 </body>
 
 </html>
