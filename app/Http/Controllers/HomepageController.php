@@ -14,28 +14,25 @@ class HomepageController extends Controller
     public function index()
     {
         try {
-            // Meta data for the homepage
-            $meta = [
-                'title'       => 'Homepage',
-                'description' => 'Welcome to the homepage!',
-            ];
-
-            // Page-specific data
+           
+            
+             // Combine all page data into a single array
             $data = [
+                'meta' => [
+                    'title'       => 'Homepage',
+                    'description' => 'Welcome to the homepage!',
+                ],
                 'messages' => null,
             ];
 
             // Return the homepage view with merged data
-            return view('homepage.index', [
-                'meta'     => $meta,
-                'messages' => $data['messages'],
-            ]);
+            return view('/homepage', $data);
         } catch (\Exception $e) {
             // Log the error (important for debugging)
             Log::error('Error loading homepage: ' . $e->getMessage());
 
-            // Option 1: Show a custom error page
-            return response()->view('errors.custom', [
+            // Option 1: Show a custom error page 'errors.custom'
+            return response()->view('/homepage', [
                 'message' => 'Something went wrong while loading the homepage.'
             ], 500);
         }
