@@ -10,3 +10,4 @@ On the front-end side, I used **npm** to manage packages and scripts. To run the
 
 For the UI, I created a **Navbar component** and built **two pages**: a Home page and an About page. One of the more interesting challenges was making a **dynamic page title**, so that when I navigated between Home and About, the page would show which page I’m currently on. I learned how to pick a webpage and connect it to another page through routes and controllers, which helped me understand the flow between different pages in Laravel + React.
 
+
