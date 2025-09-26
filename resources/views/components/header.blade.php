@@ -8,9 +8,9 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <x-nav-link href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Home</x-nav-link>
-                            <x-nav-link href="/about" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">About</x-nav-link>
-                            <x-nav-link href="/contact" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</x-nav-link>
+                            <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
+                            <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
+                            <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                         </div>
                     </div>
                 </div>
