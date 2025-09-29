@@ -17,6 +17,7 @@ Route::get('/about', function () {
 // Contact
 Route::get('/contact', function () {
     return view('contact', [
+        'title' => 'Contact Us - Blogify',
         'name' => 'Sarah Johnson',
         'email' => 'sarah.johnson@blogify.com',
         'bio' => 'Passionate full-stack developer and technical writer with over 8 years of experience in web development. Specializing in Laravel, React, and modern JavaScript frameworks. I love creating clean, efficient code and helping others learn programming through my blog posts and tutorials. When I\'m not coding, you\'ll find me hiking, reading tech books, or experimenting with new technologies.',
