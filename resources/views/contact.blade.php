@@ -5,7 +5,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ $title }}</h1>
                 <p class="text-lg text-gray-600">Get in touch with our team</p>
             </div>
 
