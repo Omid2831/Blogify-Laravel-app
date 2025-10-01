@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Job extends Model
 {
@@ -24,7 +25,7 @@ class Job extends Model
      * Get all available jobs
      * For now, this returns static data. In the future, this would query a database.
      */
-    public static function getAllJobs()
+    public static function getAllJobs(): array
     {
         return [
             [
@@ -73,5 +74,15 @@ class Job extends Model
                 'apply_link' => 'https://webworks.com/careers/full-stack-developer'
             ]
         ];
+    }
+
+
+    /*
+    Get the job by id
+    */
+    public static function find(int $id): array|null
+    {
+        $job = Arr::first(static::getAllJobs(), fn($job) => $job['id'] == $id);
+        return $job;
     }
 }
