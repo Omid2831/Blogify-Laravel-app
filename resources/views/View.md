@@ -75,3 +75,20 @@ I learned how to **create reusable Blade components** in Laravel to make layouts
 
 > **Note:**
 ><br> All page-specific meta data is passed as a single array from the controller, making it easy to access `$meta` and `$messages` in any Blade template.
+
+### Reusable Navbar with Blade Components
+
+I learned how to manage the navbar using **Blade components** in Laravel. By creating a component, I can **reuse the navbar anywhere in the project** without duplicating code. This makes my codebase cleaner, more maintainable, and scalable.
+
+For example, in the component, you can define the HTML like this:
+
+```blade
+<a {{ $attributes }}>{{ $slot }}</a>
+```
+
+* **`$slot`**: Represents the content you pass into the component.
+* **`$attributes`**: Allows you to pass additional HTML attributes dynamically, such as `class`, `href`, `id`, etc.
+
+This approach makes it easy to create a consistent navbar throughout the application while keeping it flexible and customizable.
+
+
