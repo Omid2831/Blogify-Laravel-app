@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomepageController;
 use App\Models\Job;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 // Homepage
@@ -15,6 +16,18 @@ Route::get('/jobs', function () {
         'jobs' => $jobs
     ]);
 })->name('jobs');
+
+// get job by the id 
+Route::get('/jobs/{id}', function ($id) {
+    $job = Arr::first(Job::getAllJobs(), fn($job) => $job['id'] == $id);
+
+    if (!$job) {
+        abort(404, 'Job not found');
+    }
+
+    return view('jobs.show', ['job' => $job]);
+})->name('job.show');
+
 
 // About
 // Route::get('/about', function () {
