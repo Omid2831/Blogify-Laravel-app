@@ -84,10 +84,10 @@
 
                             <!-- Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <button onclick="showJobDetails({{ $job['id'] }})"
+                                <a href="/jobs/{{ $job['id'] }}"
                                     class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors duration-200 text-center">
                                     View Details
-                                </button>
+                                </a>
                                 <a href="{{ $job['apply_link'] }}" target="_blank"
                                     class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200 text-center">
                                     Apply Now
@@ -170,13 +170,13 @@
                 <h3 class="text-lg font-semibold text-gray-900 mb-3">Requirements</h3>
                 <ul class="space-y-2">
                     ${job.requirements.map(req => `
-                                <li class="flex items-start">
-                                    <svg class="w-4 h-4 mt-1 mr-3 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="text-gray-600">${req}</span>
-                                </li>
-                            `).join('')}
+                                    <li class="flex items-start">
+                                        <svg class="w-4 h-4 mt-1 mr-3 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                        <span class="text-gray-600">${req}</span>
+                                    </li>
+                                `).join('')}
                 </ul>
             </div>
             
