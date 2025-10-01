@@ -8,7 +8,7 @@ Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 // Jobs
 Route::get('/jobs', function () {
-    return view('jobs', [
+    return view('jobs.index', [
         'title' => 'Jobs - Blogify',
         'jobs' => [
             [
