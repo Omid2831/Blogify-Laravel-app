@@ -3,6 +3,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Employer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,24 +34,6 @@ class JobFactory extends Factory
             'Technical Lead',
             'Solutions Architect',
             'Cybersecurity Specialist'
-        ];
-
-        $companies = [
-            'Tech Solutions Inc.',
-            'Innovation Labs',
-            'Digital Dynamics',
-            'CodeCraft Studios',
-            'NextGen Systems',
-            'CloudFirst Technologies',
-            'DataDriven Corp',
-            'WebWorks Agency',
-            'StartupHub',
-            'Enterprise Solutions Ltd',
-            'TechPioneer Inc',
-            'FutureTech Group',
-            'AgileWorks',
-            'DevMaster Solutions',
-            'DigitalForge'
         ];
 
         $locations = [
@@ -94,9 +77,13 @@ class JobFactory extends Factory
         // Select 3-6 random requirements
         $selectedRequirements = fake()->randomElements($requirements, fake()->numberBetween(3, 6));
 
+        // Create or get an employer
+        $employer = Employer::factory()->create();
+
         return [
+            'employer_id' => $employer->id,
             'title' => fake()->randomElement($jobTitles),
-            'company' => fake()->randomElement($companies),
+            'company' => $employer->name, // Use the employer's name
             'location' => fake()->randomElement($locations),
             'type' => fake()->randomElement($jobTypes),
             'description' => fake()->paragraphs(3, true),
@@ -110,7 +97,7 @@ class JobFactory extends Factory
      */
     public function senior(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'title' => 'Senior ' . $attributes['title'],
         ]);
     }
@@ -120,7 +107,7 @@ class JobFactory extends Factory
      */
     public function remote(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'location' => 'Remote',
         ]);
     }
@@ -130,7 +117,7 @@ class JobFactory extends Factory
      */
     public function fullTime(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'type' => 'Full-time',
         ]);
     }
