@@ -13,6 +13,7 @@ class Job extends Model
     protected $table = 'jobs-listings';
 
     protected $fillable = [
+        'employer_id',
         'title',
         'company',
         'location',
@@ -27,6 +28,14 @@ class Job extends Model
     ];
 
     /**
+     * Get the employer that owns the job
+     */
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
+
+    /**
      * Get all available jobs
      * This will first try to get from database, fallback to static data
      */
@@ -35,7 +44,7 @@ class Job extends Model
         // Try to get from database first
         try {
             if (self::count() > 0) {
-                return self::all()->map(function ($job) {
+                return self::with('employer')->get()->map(function ($job) {
                     return [
                         'id' => $job->id,
                         'title' => $job->title,
@@ -45,6 +54,12 @@ class Job extends Model
                         'description' => $job->description,
                         'requirements' => $job->requirements,
                         'apply_link' => $job->apply_link,
+                        'employer' => $job->employer ? [
+                            'id' => $job->employer->id,
+                            'name' => $job->employer->name,
+                            'email' => $job->employer->email,
+                            'website' => $job->employer->website,
+                        ] : null,
                     ];
                 })->toArray();
             }
@@ -64,7 +79,7 @@ class Job extends Model
     {
         // Try database first
         try {
-            $job = parent::find($id);
+            $job = parent::with('employer')->find($id);
             if ($job) {
                 return $job;
             }
