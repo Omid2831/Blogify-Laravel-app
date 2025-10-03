@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class Job extends Model
 {
@@ -65,6 +66,7 @@ class Job extends Model
             }
         } catch (\Exception $e) {
             // Database not available, use static data
+            Log::error('Database error: ' . $e->getMessage());
         }
 
         // Fallback to static data if database is empty or not available
@@ -208,6 +210,31 @@ class Job extends Model
 
         foreach ($staticJobs as $jobData) {
             self::create($jobData);
+        }
+    }
+
+    /**
+     * Delete a job by id
+     */
+    public static function deleteJob($id)
+    {
+        try {
+            $job = self::find($id);
+            if ($job) {
+                $deleted = $job->delete();
+                if ($deleted) {
+                    // log success message
+                    Log::info("Job with id $id deleted successfully.");
+                    return "Job with id $id deleted successfully.";
+                }
+                return false;
+            } else {
+                Log::warning("Job with id $id not found.");
+                return "Job with id $id not found.";
+            }
+        } catch (\Exception $e) {
+            Log::error('Database error: ' . $e->getMessage());
+            return "Database error: " . $e->getMessage();
         }
     }
 }
