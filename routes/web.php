@@ -1,35 +1,38 @@
 <?php
 
-use App\Http\Controllers\HomepageController;
-use App\Models\Job;
+
 use Illuminate\Support\Facades\Route;
+use App\Models\Job;
 
-// Homepage
-Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/', function () {
+    return view('homepage');
+});
 
-// Jobs
 Route::get('/jobs', function () {
+    // Get jobs from database (will fallback to static if database is empty)
     $jobs = Job::getAllJobs();
-    return view('jobs.index', [
-        'title' => 'Jobs - Blogify',
-        'jobs' => $jobs
-    ]);
-})->name('jobs');
+    return view('jobs.index', ['jobs' => $jobs]);
+});
 
-// About
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
+Route::get('/jobs/{id}', function ($id) {
+    // Get single job from database
+    $job = Job::findJob($id);
 
-// Contact
+    if (!$job) {
+        abort(404, 'Job not found');
+    }
+
+    return view('jobs.show', ['job' => $job]);
+})->where('id', '[0-9]+')->name('job.show');
+
 Route::get('/contact', function () {
     return view('contact', [
-        'title' => 'Contact Us - Blogify',
-        'name' => 'Sarah Johnson',
-        'email' => 'sarah.johnson@blogify.com',
-        'bio' => 'Passionate full-stack developer and technical writer with over 8 years of experience in web development. Specializing in Laravel, React, and modern JavaScript frameworks. I love creating clean, efficient code and helping others learn programming through my blog posts and tutorials. When I\'m not coding, you\'ll find me hiking, reading tech books, or experimenting with new technologies.',
-        'location' => 'San Francisco, CA',
-        'role' => 'Senior Full-Stack Developer',
-        'company' => 'Blogify Technologies'
+        'title' => 'Contact Us',
+        'name' => 'Alessandro Rodriguez',
+        'email' => 'alessandro@blogify.com',
+        'location' => 'Barcelona, Spain',
+        'role' => 'Senior Full Stack Developer',
+        'company' => 'Blogify International',
+        'bio' => 'Experienced software engineer from Barcelona with over 8 years in web development. Specializes in Laravel, React, and cloud technologies. Fluent in Spanish, English, and Catalan. Passionate about creating scalable solutions and mentoring junior developers.'
     ]);
-})->name('contact');
+});
