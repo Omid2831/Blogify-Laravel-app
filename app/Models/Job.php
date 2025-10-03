@@ -237,4 +237,25 @@ class Job extends Model
             return "Database error: " . $e->getMessage();
         }
     }
+
+    /**
+     * Update a job by id
+     */
+    public static function updateJob($id, $data)
+    {
+        try {
+            $job = self::find($id);
+            if($job){
+                $job->update($data);
+                Log::info("Job with id $id updated successfully.");
+                return "Job with id $id updated successfully.";
+            } else {
+                Log::warning("Job with id $id not found.");
+                return "Job with id $id not found.";
+            }
+        } catch (\Exception $e) {
+            Log::error('Database error: ' . $e->getMessage());
+            return "Database error: " . $e->getMessage();
+        }
+    }
 }
