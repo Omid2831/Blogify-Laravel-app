@@ -27,10 +27,25 @@ Then i have added a shortcut command for the `php artisan`
 
 ```bash
 alias pa="php artisan"
+
+function pa {
+    param([Parameter(ValueFromRemainingArguments = $true)] $args)
+    php artisan @args
+}
 ```
 
 This command must be written in the bash profile depending on the system you are using!
 first you have to open the notepad system using the command
+
+```bash
+Notepad $PROFILE
+```
+
+then you have to paste the above command in the notepad and save it.
+
+Now after refreshing you terminal you can use `pa` instead of `php artisan`.
+
+# what is acually migration and factory
 
 ```bash
 Notepad $PROFILE
