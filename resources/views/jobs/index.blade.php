@@ -7,10 +7,8 @@
             @include('jobs.partials.index.header')
             @include('jobs.partials.searchbar')
             <!-- Jobs Grid -->
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                @foreach ($jobs as $job)
-                    @include('jobs.partials.index.job-card', ['job' => $job])
-                @endforeach
+            <div id="jobs-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                @include('jobs.partials.job-list', ['filteredJobs' => $jobs])
             </div>
 
             @include('jobs.partials.index.call-to-action')
@@ -21,5 +19,5 @@
 @endsection
 
 @push('scripts')
-     @vite('resources/js/javascript.js')
+    @vite('resources/js/searchabar.js')
 @endpush
