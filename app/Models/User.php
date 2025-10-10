@@ -45,4 +45,22 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * employer relationship to Job
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Employer, User>
+     */
+    public function employer()
+    {
+        return $this->belongsTo(Employer::class);
+    }
+
+    /**
+     * Job relationship to employer 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Job, User>
+     */
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }
