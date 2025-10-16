@@ -2,28 +2,16 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Models\Job;
 
 Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/jobs', function () {
-    // Get jobs from database (will fallback to static if database is empty)
-    $jobs = Job::getAllJobs();
-    return view('jobs.index', ['jobs' => $jobs]);
-});
-
-Route::get('/jobs/{id}', function ($id) {
-    // Get single job from database
-    $job = Job::findJob($id);
-
-    if (!$job) {
-        abort(404, 'Job not found');
-    }
-
-    return view('jobs.show', ['job' => $job]);
-})->where('id', '[0-9]+')->name('job.show');
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
+Route::get('/jobs/{id}', [JobController::class, 'show'])->where('id', '[0-9]+')->name('job.show');
 
 Route::get('/contact', function () {
     return view('contact', [

@@ -27,10 +27,25 @@ Then i have added a shortcut command for the `php artisan`
 
 ```bash
 alias pa="php artisan"
+
+function pa {
+    param([Parameter(ValueFromRemainingArguments = $true)] $args)
+    php artisan @args
+}
 ```
 
 This command must be written in the bash profile depending on the system you are using!
 first you have to open the notepad system using the command
+
+```bash
+Notepad $PROFILE
+```
+
+then you have to paste the above command in the notepad and save it.
+
+Now after refreshing you terminal you can use `pa` instead of `php artisan`.
+
+# what is acually migration and factory
 
 ```bash
 Notepad $PROFILE
@@ -74,3 +89,25 @@ App\Models\Job::deleteJob(3); // to delete the data with id 3
 
 > [!IMPORTANT]
 > Make sure you have the methods `updateJob` and `deleteJob` in your model.
+
+
+# Eloquent: Relationships
+
+Eloquent relationship has been a very intersting topic to learn and explore and why is that acually ?
+
+
+- well one of thhe main reasons is that it makese the data management very easy and cool becuase it allows you do call some methods like what we do in `database sql` but in a very easy way.
+
+- like for example if we have a `User` model and a `Post` model and we want to get all the
+posts of a user we can do it like this:
+
+```php
+$user = App\Models\User::find(1);
+$posts = $user->posts; // this will get all the posts of the user with id one
+```
+
+There for here you use the basic `php artisan tinker` to  run the above code and see the outcome in the terminal.
+
+
+> [!TIP]
+> there are Methods  for the relationships like `HasOne`, `HasMany`, `belongsTo`, `ManyToMany`, `OneToMany`, `OneToOne` etc.
