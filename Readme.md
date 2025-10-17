@@ -111,3 +111,59 @@ There for here you use the basic `php artisan tinker` to  run the above code and
 
 > [!TIP]
 > there are Methods  for the relationships like `HasOne`, `HasMany`, `belongsTo`, `ManyToMany`, `OneToMany`, `OneToOne` etc.
+
+---
+
+# Pivot Tables in laravel Elequent
+
+Pivot Tables are used to define many-to-many relationships between two or more models in Laravel
+
+For example if we have a `User` model and a `Role` model and we want to define a many-to-many relationship between them we can use a pivot table called `Role_User`
+This is called as a linked Table or junction table.
+
+To create a pivot table we can use the following command
+
+```bash
+php artisan make:migration create_role_user_table --create=role_user
+```
+This command will create a migration file for the pivot table  `role_user`
+
+Then we can define the columns of the pivot table in the migration file like this:
+
+```php
+Schema::create("role_user", function(Blueprint $table){
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->foreignId('role_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+})
+```
+
+Finally we can run the migration using the following command:
+
+```bash
+php artisan migrate
+```
+
+*What do we mean with `constrained()->onDelete('cascade')`*
+
+Well it means that when a record is deleted from a parent table the related ones in the pivot table will be deleted as well.
+
+To define the many-to-many relationship in the models we can use the `belongsToMany` method like this:
+
+```php
+class User extends Model
+{
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+}
+```
+```php
+Class Role extends Model
+{
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+}
+```
