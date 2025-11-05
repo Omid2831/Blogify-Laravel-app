@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->where('id', '[0-9]+')->name('job.show');
+Route::post('/jobs', [JobController::class, 'store'])->name('jobs.create');
 
 Route::get('/contact', function () {
     return view('contact', [

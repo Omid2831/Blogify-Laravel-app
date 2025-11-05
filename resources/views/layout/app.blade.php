@@ -7,6 +7,7 @@
     <title>{{ $meta['title'] ?? 'Blogify - Laravel Application' }}</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    @stack('styles')
 </head>
 
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
@@ -21,6 +22,8 @@
 
     <!-- Footer -->
     <x-footer />
+
+    @stack('scripts')
 </body>
 
 </html>
